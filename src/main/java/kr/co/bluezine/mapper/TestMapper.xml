@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.bluezine.mapper.TestMapper">
+    
+	<select id="getUser" parameterType="string" resultType="string">
+		SELECT		PASSWORD
+		FROM		USER
+		WHERE		ID = #{0}
+	</select>
+    
+	<insert id="insertUser" parameterType="string">
+		INSERT INTO USER
+		(
+			 ID
+			,PASSWORD
+		)
+		VALUES
+		(
+			 #{0}
+			,#{1}
+		)
+   	</insert>	
+</mapper>
