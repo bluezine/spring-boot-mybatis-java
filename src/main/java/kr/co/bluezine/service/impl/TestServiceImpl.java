@@ -1,5 +1,8 @@
 package kr.co.bluezine.service.impl;
 
+import java.util.List;
+
+import kr.co.bluezine.dao.User;
 import kr.co.bluezine.repository.TestRepository;
 import kr.co.bluezine.service.TestService;
 
@@ -15,12 +18,22 @@ public class TestServiceImpl implements TestService {
 	private TestRepository testRepository;
 
 	@Override
-	public String getUser(String id) {
+	public List<User> getUsers() {
+		return testRepository.getUsers();
+	}
+
+	@Override
+	public User getUser(String id) {
 		return testRepository.getUser(id);
 	}
 
 	@Override
-	public void insertUser(String id, String password) {
-		testRepository.insertUser(id, password);
+	public void insertUser(User user) {
+		testRepository.insertUser(user);
+	}
+
+	@Override
+	public void deleteUser(String id) {
+		testRepository.deleteUser(id);
 	}
 }

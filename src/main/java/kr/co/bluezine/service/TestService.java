@@ -1,6 +1,12 @@
 package kr.co.bluezine.service;
 
+import java.util.List;
+
+import kr.co.bluezine.dao.User;
+
 public interface TestService {
-	String getUser(String id);
-	void insertUser(String id, String password);
+	List<User> getUsers();
+	User getUser(String id);
+	void insertUser(User user);
+	void deleteUser(String id);
 }

@@ -1,5 +1,8 @@
 package kr.co.bluezine.repository;
 
+import java.util.List;
+
+import kr.co.bluezine.dao.User;
 import kr.co.bluezine.mapper.TestMapper;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,11 +19,19 @@ public class TestRepository {
 		return sqlSessionTemplate.getMapper(TestMapper.class);
 	}
 	
-	public String getUser(String id) {
+	public List<User> getUsers() {
+		return getMapper().getUsers();
+	}
+	
+	public User getUser(String id) {
 		return getMapper().getUser(id);
 	}
 	
-	public void insertUser(String id, String password) {
-		getMapper().insertUser(id, password);
+	public void insertUser(User user) {
+		getMapper().insertUser(user);
+	}
+	
+	public void deleteUser(String id) {
+		getMapper().deleteUser(id);
 	}
 }

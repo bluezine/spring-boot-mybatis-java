@@ -1,5 +1,9 @@
 package kr.co.bluezine;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.co.bluezine.dao.User;
 import kr.co.bluezine.service.TestService;
 
 import org.slf4j.Logger;
@@ -9,8 +13,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -20,7 +22,7 @@ public class Application implements CommandLineRunner {
     public static void main(String[] args) {
     	logger.debug("-------------> Application Starting...");
         SpringApplication.run(Application.class, args);
-        logger.debug("-------------> Success!");
+        logger.debug("-------------> End Application");
     }
 	
 	@Autowired
@@ -29,9 +31,36 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		testService.insertUser("가나", "뱌뱌");
-		String result = testService.getUser("가나");
-		logger.debug(result);
+		List<User> users = new ArrayList<User>();
+		users = testService.getUsers();
+		logger.debug("============Initial Data============");
+		logger.debug("    ID          |           NAME");
+		for (User u : users) {
+			logger.debug("   " + u.getId() + "        |         " + u.getName());
+		}
+		logger.debug("====================================");
+		User user = new User();
+		user.setId("test4");
+		user.setName("test4");
+		logger.debug("============> Add User test4/test4");
+		testService.insertUser(user);
+		users = testService.getUsers();
+		logger.debug("============Current Data============");
+		logger.debug("    ID          |           NAME");
+		for (User u : users) {
+			logger.debug("   " + u.getId() + "        |         " + u.getName());
+		}
+		logger.debug("====================================");
+		logger.debug("============> Del User test1/test1");
+		testService.deleteUser("test1");
+		users = testService.getUsers();
+		logger.debug("============Current Data============");
+		logger.debug("    ID          |           NAME");
+		for (User u : users) {
+			logger.debug("   " + u.getId() + "        |         " + u.getName());
+		}
+		logger.debug("====================================");
+		return;
 	}
 	
 	

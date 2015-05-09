@@ -1,2 +1,2 @@
-# spring-boot-mybatis-embeddedSQL
-Spring Boot H2 Embedded SQL mybatis Control
+# spring-boot-mybatis
+Spring Boot + Mybatis + H2 Embedded SQL
